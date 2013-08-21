@@ -17,7 +17,7 @@ Tools and Utilities
 
 Clears the Rails cache.
 
-__config/initializers/standards.rb__
+__add to your Rakefile__
 
     require 'standards/resque'
 
@@ -27,11 +27,29 @@ Use it on demand:
 
     rake cache:flush # (alias for cache:clear)
 
+### Configs
+
+Provides a number of methods for pulling configurations out of ENV and other configuration locations based on standardized names.
+
+Each configs method will return a hash. 
+
+##### Methods
+
+  - `smtp`: Standard smtp settings for the ActionMailer smtp_settings configuration. 
+    - SMTP_ADDRESS
+    - SMTP_USER_NAME
+    - SMTP_PASSWORD
+    - SMTP_PORT                 (default: 587)
+    - SMTP_AUTHENTICATION       (default: 'plain')
+    - SMTP_ENABLE_STARTTLS_AUTO
+    - SMTP_OPENSSL_VERIFY_MODE
+    - SMTP_DOMAIN
+
 ### Resque
 
 Provides a standard resque worker task. 
 
-__config/initializers/standards.rb__
+__add to your Rakefile__
 
     require 'standards/resque'
 
@@ -72,6 +90,7 @@ Roadmap
 - S3 Storage/Carrierwave 
 - Doctor task
 - Deploy task (primarily for git deployment), including config writer for deploy environments 
+- Sprite generation and "autosprite" task. Pngquant and imageoptim.
 
 
 
