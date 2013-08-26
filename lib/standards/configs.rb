@@ -23,16 +23,31 @@ module Standards
         port: (Integer(ENV['SMTP_PORT']) rescue nil),
         authentication: ENV['SMTP_AUTHENTICATION'] || 'plain',
       }
+
+      sendgrid? = (settings[:address] == "smtp.sendgrid.net")
+      gmail?    = (settings[:address] == "smtp.gmail.com")
+
       # Specifically recognized smtp servers may have easily configured defaults, so 
       # that all that needs to be declared is address and creds.
       if settings[:port].blank? or settings[:port] == 0
-        case settings[:address]
-        when "smtp.sendgrid.net"
-          settings[:port] = 25 
-        when "smtp.gmail.com"
-          settings[:port] = 465
-        else
-          settings[:port] = 587
+        settings[:port] = if sendgrid?
+          25
+        elsif gmail?
+          465
+        else 
+          587
+        end
+      end
+
+      # Overlap SENDGRID u/p env vars
+      if settings[:user_name].blank?
+        settings[:user_name] = if sendgrid?
+          ENV["SENDGRID_USERNAME"] || ENV["SENDGRID_USER_NAME"]
+        end
+      end
+      if settings[:password].blank?
+        settings[:password] = if sendgrid?
+          ENV["SENDGRID_PASSWORD"]
         end
       end
 
