@@ -13,6 +13,14 @@ Add this line to your application's Gemfile:
 Tools and Utilities
 -------------------
 
+### Basic Http Auth
+
+Initializes http authentication using `Rack::Auth::Basic`. Expects to enforce authentication if env variables `HTTP_USERNAME` and `HTTP_PASSWORD` are defined. General use case for this configuration is the locking down of a staging environment. 
+
+__add to application.rb__
+
+    include Standards::BasicHttpAuth
+
 ### Cache
 
 Clears the Rails cache.
