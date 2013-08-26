@@ -35,15 +35,22 @@ Each configs method will return a hash.
 
 ##### Methods
 
-  - `smtp`: Standard smtp settings for the ActionMailer smtp_settings configuration. 
-    - SMTP_ADDRESS
-    - SMTP_USER_NAME
-    - SMTP_PASSWORD
-    - SMTP_PORT                 (default: 587)
-    - SMTP_AUTHENTICATION       (default: 'plain')
-    - SMTP_ENABLE_STARTTLS_AUTO
-    - SMTP_OPENSSL_VERIFY_MODE
-    - SMTP_DOMAIN
+`smtp`: `smtp`: Standard smtp settings for the ActionMailer smtp_settings configuration. 
+
+__add to your config/application.rb (or environment configuration)__
+
+    config.action_mailer.smtp_settings = Standards.configs.smtp
+
+- SMTP_ADDRESS
+- SMTP_USER_NAME
+- SMTP_PASSWORD
+- SMTP_PORT                 (default: 587)
+- SMTP_AUTHENTICATION       (default: 'plain')
+- SMTP_ENABLE_STARTTLS_AUTO
+- SMTP_OPENSSL_VERIFY_MODE
+- SMTP_DOMAIN
+
+The smtp method will automatically fill in values when env configurations are recognized. For example, the smtp servers for gmail and sendgrid use different ports, and the config will set the correct port if no port is specified.
 
 ### Resque
 
@@ -56,6 +63,18 @@ __add to your Rakefile__
 __Procfile (or in a terminal)__
 
     worker:    bundle exec rake resque:setup resque:work QUEUE='*'
+
+### Statsd
+
+Configures the [Statsd client](http://rubygems.org/gems/statsd-ruby) from environment variables and sets a `Statsd.current` class attribute to access the current connection instance.
+
+__add to your Gemfile__
+
+    gem 'statsd-ruby'
+
+__config/initializers/statsd.rb__
+
+    require 'standards/statsd'
 
 ### Unicorn
 
@@ -91,7 +110,6 @@ Roadmap
 - Doctor task
 - Deploy task (primarily for git deployment), including config writer for deploy environments 
 - Sprite generation and "autosprite" task. Pngquant and imageoptim.
-
 
 
 

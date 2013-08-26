@@ -4,9 +4,11 @@ module Standards
   autoload :Cache,   'standards/cache'
   autoload :Configs, 'standards/configs'
   autoload :Resque,  'standards/resque'
+  autoload :Statsd,  'standards/statsd'
 
-  def cache;   Cache; end
-  def configs; Configs; end
-  def resque;  Resque; end
+  def self.cache;   Cache; end
+  def self.configs; Configs; end
+  def self.resque;  Resque; end
+  def self.statsd;  Statsd; end
 
 end
