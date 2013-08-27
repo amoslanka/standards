@@ -35,6 +35,20 @@ Use it on demand:
 
     rake cache:flush # (alias for cache:clear)
 
+### Cashier
+
+Configures Cashier to store in redis, use the current redis instance, and namespace the store with "cashier". Cashier notifications will also be subscribed to for the purpose of logging information about cashier events.
+
+Gem dependencies: 
+
+    gem 'redis-namespace'
+    gem 'cashier'
+
+__add to your application.rb (after configuring Redis or your `config.cache_store`__
+
+    include Standards::Cashier
+
+
 ### Configs
 
 Provides a number of methods for pulling configurations out of ENV and other configuration locations based on standardized names.

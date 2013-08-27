@@ -3,6 +3,7 @@ module Standards
 
   autoload :BasicHttpAuth, 'standards/basic_http_auth'
   autoload :Cache,         'standards/cache'
+  autoload :Cashier,       'standards/cashier'
   autoload :Configs,       'standards/configs'
   autoload :Resque,        'standards/resque'
   autoload :Statsd,        'standards/statsd'
