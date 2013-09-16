@@ -74,6 +74,18 @@ __add to your config/application.rb (or environment configuration)__
 
 The smtp method will automatically fill in values when env configurations are recognized. For example, the smtp servers for gmail and sendgrid use different ports, and the config will set the correct port if no port is specified.
 
+### Force
+
+Configures controllers and views to offer a "force?" method useful in applying and checking for forced values, typically via a get parameter named "force".
+
+To use as a helper method in both controller and views, simply include in your controller:
+
+class SomeController < ActionController::Base
+  include Standards::Force
+  ...
+end
+
+
 ### Resque
 
 Provides a standard resque worker task. 
@@ -132,7 +144,8 @@ Roadmap
 - Doctor task
 - Deploy task (primarily for git deployment), including config writer for deploy environments 
 - Sprite generation and "autosprite" task. Pngquant and imageoptim.
-
+- Mobile detection
+- Exception handling (using layouts instead of public .html files, and allowing for introspection when forced)
 
 
 ## Contributing
