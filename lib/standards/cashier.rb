@@ -9,8 +9,8 @@ module Standards
 
     # 
     # Cashier enables tag based caching.
-    Cashier.adapter = :redis_store
-    Cashier.adapter.redis = Redis::Namespace.new(:cashier, :redis => Redis.current)
+    ::Cashier.adapter = :redis_store
+    ::Cashier.adapter.redis = Redis::Namespace.new(:cashier, :redis => Redis.current)
 
     # Subscribe to the store fragment event, this is fired every time cashier will call the "store_fragment" method
     # payload[:data] will be something like this: ["key", ["tag1", "tag2", "tag3"]]
